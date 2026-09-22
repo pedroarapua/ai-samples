@@ -1,0 +1,12 @@
+# Ambientes virtuais
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Dados locais do Docker (para não subir seu banco de dados)
+postgres_data/
+
+# IDEs
+.vscode/
+.idea/
