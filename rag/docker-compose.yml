@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: postgres_cache_container
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rag_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
