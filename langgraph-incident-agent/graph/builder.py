@@ -2,6 +2,7 @@ from langgraph.graph import END, START, StateGraph
 
 from graph.edges import (
     increment_retry,
+    route_after_retry,
     route_after_validation,
     route_by_area,
 )
@@ -105,9 +106,13 @@ def build_graph():
     # Retry
     # -----------------------------------------
 
-    builder.add_edge(
+    builder.add_conditional_edges(
         "increment_retry",
-        "classify",
+        route_after_retry,
+        {
+            "db": "execute_db",
+            "ops": "execute_ops",
+        },
     )
 
     return builder.compile()

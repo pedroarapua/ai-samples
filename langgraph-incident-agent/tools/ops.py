@@ -4,31 +4,75 @@ from langchain_core.tools import tool
 
 
 @tool
-def execute_ops_action(
-    action: str,
+def check_service_health(
     service: str,
 ) -> dict[str, Any]:
     """
-    Executa uma ação relacionada à infraestrutura.
+    Verifica a saúde de um serviço.
     """
 
     print(
-        f"[OPS TOOL] Executando '{action}' "
-        f"no serviço '{service}'"
+        f"[OPS TOOL] Verificando saúde "
+        f"do serviço '{service}'"
     )
-
-    # Simulação.
-    #
-    # Futuramente podemos substituir isso
-    # por chamadas reais de infraestrutura.
 
     return {
         "status": "success",
         "area": "ops",
-        "action": action,
+        "action": "check_service_health",
         "service": service,
         "message": (
-            f"Ação '{action}' executada "
-            f"com sucesso no serviço '{service}'."
+            f"Saúde do serviço '{service}' "
+            "verificada com sucesso."
+        ),
+    }
+
+
+@tool
+def check_pods(
+    service: str,
+) -> dict[str, Any]:
+    """
+    Verifica os pods relacionados a um serviço.
+    """
+
+    print(
+        f"[OPS TOOL] Verificando pods "
+        f"do serviço '{service}'"
+    )
+
+    return {
+        "status": "success",
+        "area": "ops",
+        "action": "check_pods",
+        "service": service,
+        "message": (
+            f"Pods do serviço '{service}' "
+            "verificados com sucesso."
+        ),
+    }
+
+
+@tool
+def restart_service(
+    service: str,
+) -> dict[str, Any]:
+    """
+    Reinicia um serviço.
+    """
+
+    print(
+        f"[OPS TOOL] Reiniciando "
+        f"o serviço '{service}'"
+    )
+
+    return {
+        "status": "success",
+        "area": "ops",
+        "action": "restart_service",
+        "service": service,
+        "message": (
+            f"Serviço '{service}' "
+            "reiniciado com sucesso."
         ),
     }

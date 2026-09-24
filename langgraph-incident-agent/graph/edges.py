@@ -28,6 +28,13 @@ def route_after_validation(
     return "retry"
 
 
+def route_after_retry(
+    state: IncidentState,
+) -> str:
+
+    return state["area"]
+
+
 def increment_retry(
     state: IncidentState,
 ) -> IncidentState:
